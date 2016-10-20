@@ -13,7 +13,9 @@ The sparkStreaming deployment component is being re-used to launch this applicat
 
 ## h2o Distribution
 
-Download a version of h2o that is compatible with the target PNDA verson and place it in `app-package/src/main/resources/sparkStreaming/h2o`
+Download a version of h2o that is compatible with the target PNDA verson then extract h2odriver.jar and place it in `app-package/src/main/resources/sparkStreaming/h2o`. 
+
+For PNDA 3.1 use `http://h2o-release.s3.amazonaws.com/h2o/rel-turing/8/h2o-3.10.0.8-cdh5.5.zip`
 
 ## Build
 
@@ -41,4 +43,30 @@ To make the package available for deployment it must be uploaded to a package re
 
 ## How to access h2o after running the app
 
-TODO: Fill this in
+After creating and starting the PNDA application, use the PNDA log server to search for the phrase "Open H2O Flow in your web browser". There should be a message with a link like this `Open H2O Flow in your web browser: http://10.0.1.102:54321 `
+
+You may also find it convenient to tail the h2o submit command directly e.g.
+
+```
+ubuntu@pnda-cdh-edge:~$ sudo tail -f -n 200 /var/log/upstart/platform_app-h2o-h2o.log
+16/10/20 10:17:11 INFO client.RMProxy: Connecting to ResourceManager at pndachu-cdh-mgr-1/10.0.1.228:8032
+16/10/20 10:17:12 INFO mapreduce.JobSubmitter: number of splits:1
+16/10/20 10:17:12 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1476952813387_0004
+16/10/20 10:17:13 INFO impl.YarnClientImpl: Submitted application application_1476952813387_0004
+16/10/20 10:17:13 INFO mapreduce.Job: The url to track the job: http://pndachu-cdh-mgr-1:8088/proxy/application_1476952813387_0004/
+Job name 'H2O_60513' submitted
+JobTracker job ID is 'job_1476952813387_0004'
+For YARN users, logs command is 'yarn logs -applicationId application_1476952813387_0004'
+Waiting for H2O cluster to come up...
+H2O node 10.0.1.102:54321 requested flatfile
+Sending flatfiles to nodes...
+    [Sending flatfile to node 10.0.1.102:54321]
+H2O node 10.0.1.102:54321 reports H2O cluster size 1
+H2O cluster (1 nodes) is up
+(Note: Use the -disown option to exit the driver after cluster formation)
+
+Open H2O Flow in your web browser: http://10.0.1.102:54321
+
+(Press Ctrl-C to kill the cluster)
+Blocking until the H2O cluster shuts down...
+```
