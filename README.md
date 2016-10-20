@@ -5,7 +5,7 @@
 This project runs the h2o data science platform as an application on PNDA.
 
 *** Note ***
-The sparkStreaming deployment component is being re-used to launch this application as a PoC. If it works OK then a new h2o component type will be created to be more consistent.
+The sparkStreaming deployment component is being re-used to launch this application as a PoC.
 
 ## Requirements
 
