@@ -1,5 +1,7 @@
 # h2o Launcher
 
+DEPRECATED - Moved to https://github.com/pndaproject/example-applications
+
 ## Overview
 
 This project runs the h2o data science platform as an application on PNDA.
